@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Real-time hospital bed availability across major hospitals in Ghana. Check ICU, emergency, and general bed status.">
+    <title>Bed Status Dashboard - No Bed Syndrome</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <span class="icon">🏥</span>
+                <span>No Bed Syndrome</span>
+            </a>
+            
+            <ul class="navbar-menu">
+                <li id="auth-link"><a href="login.html">Login</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="hospitals.html">Hospitals</a></li>
+                <li><a href="bed_status.html" class="active">Bed Status</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                
+                
+            </ul>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                ☰
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section style="margin-top: 80px; background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-teal) 100%); color: var(--white); padding: 3rem 0;">
+        <div class="container">
+            <h1 style="color: var(--white);">Real-Time Bed Status</h1>
+            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.125rem;">
+                Live bed availability across all major hospitals in Ghana
+            </p>
+            <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.875rem; margin-top: 0.5rem;" id="last-refresh">
+                Last updated: Loading...
+            </p>
+        </div>
+    </section>
+
+    <!-- Status Legend -->
+    <section style="background: var(--white); padding: 2rem 0;">
+        <div class="container">
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="status-badge available">Available</span>
+                    <span style="font-size: 0.875rem; color: var(--medium-gray);">≥30% beds free</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="status-badge limited">Limited</span>
+                    <span style="font-size: 0.875rem; color: var(--medium-gray);">10-29% beds free</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="status-badge full">Full</span>
+                    <span style="font-size: 0.875rem; color: var(--medium-gray);"><10% beds free</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Statistics -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>National Summary</h2>
+                <p>Overall bed availability across Ghana</p>
+            </div>
+            
+            <div class="bed-status-grid" id="bed-status-summary">
+                <!-- Dynamic content loaded via JavaScript -->
+                <div class="loading" style="text-align: center; padding: 3rem; grid-column: 1 / -1;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+                    <p>Loading bed status data...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hospital Bed Status -->
+    <section style="background: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hospital-by-Hospital Status</h2>
+                <p>Detailed bed availability for each hospital</p>
+            </div>
+            
+            <div class="bed-status-grid" id="hospitals-bed-status">
+                <!-- Dynamic content loaded via JavaScript -->
+                <div class="loading" style="text-align: center; padding: 3rem; grid-column: 1 / -1;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏥</div>
+                    <p>Loading hospital data...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auto-Refresh Notice -->
+    <section style="background: var(--off-white); padding: 2rem 0;">
+        <div class="container text-center">
+            <p style="color: var(--medium-gray);">
+                ⚡ This page auto-refreshes every 30 seconds to provide real-time bed availability
+            </p>
+        </div>
+    </section>
+
+    <!-- Emergency Notice -->
+    <section style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: var(--white); padding: 3rem 0;">
+        <div class="container text-center">
+            <h2 style="color: var(--white);">⚠️ Medical Emergency?</h2>
+            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.125rem; margin-bottom: 2rem;">
+                For life-threatening emergencies, call the National Ambulance Service immediately
+            </p>
+            <div style="background: rgba(255, 255, 255, 0.2); padding: 2rem; border-radius: 1rem; display: inline-block;">
+                <p style="font-size: 0.875rem; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.9);">Emergency Hotline</p>
+                <p style="font-size: 3rem; font-weight: bold; color: var(--white); margin: 0;">📞 193</p>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.875rem; color: rgba(255, 255, 255, 0.8);">
+                Available 24/7 nationwide
+            </p>
+        </div>
+    </section>
+
+    <!-- Bed Request Section -->
+    <section style="background: var(--off-white);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Request a Bed</h2>
+                <p>Found a hospital with available beds? Submit a request to secure your spot</p>
+            </div>
+            
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="bed-request-form" style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <label for="patient-name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Full Name *</label>
+                                    <input type="text" id="patient-name" name="patient_name" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                                </div>
+                                <div>
+                                    <label for="patient-email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email Address *</label>
+                                    <input type="email" id="patient-email" name="patient_email" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <label for="patient-phone" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone Number *</label>
+                                    <input type="tel" id="patient-phone" name="patient_phone" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                                </div>
+                                <div>
+                                    <label for="hospital-select" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Preferred Hospital *</label>
+                                    <select id="hospital-select" name="hospital_id" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                                        <option value="">Select Hospital</option>
+                                        <option value="1">Korle Bu Teaching Hospital (Greater Accra)</option>
+                                        <option value="2">Ridge Hospital (Greater Accra)</option>
+                                        <option value="3">37 Military Hospital (Greater Accra)</option>
+                                        <option value="4">Tema General Hospital (Greater Accra)</option>
+                                        <option value="5">Komfo Anokye Teaching Hospital (Ashanti)</option>
+                                        <option value="6">Cape Coast Teaching Hospital (Central)</option>
+                                        <option value="7">Tamale Teaching Hospital (Northern)</option>
+                                        <option value="8">Effia Nkwanta Regional Hospital (Western)</option>
+                                        <option value="9">Sunyani Regional Hospital (Bono)</option>
+                                        <option value="10">Ho Teaching Hospital (Volta)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div>
+                                    <label for="bed-type" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Bed Type *</label>
+                                    <select id="bed-type" name="bed_type" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                                        <option value="">Select Bed Type</option>
+                                        <option value="general">General Ward</option>
+                                        <option value="icu">Intensive Care Unit (ICU)</option>
+                                        <option value="emergency">Emergency</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="urgency-level" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Urgency Level *</label>
+                                    <select id="urgency-level" name="urgency_level" required style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem;">
+                                        <option value="">Select Urgency</option>
+                                        <option value="low">Low - Non-urgent</option>
+                                        <option value="medium">Medium - Within 24 hours</option>
+                                        <option value="high">High - Within 12 hours</option>
+                                        <option value="critical">Critical - Immediate</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="reason" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Reason for Request</label>
+                                <textarea id="reason" name="reason" rows="3" placeholder="Please briefly describe the medical condition or reason for bed request..." style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 0.5rem; resize: vertical;"></textarea>
+                            </div>
+                            
+                            <div id="request-message" style="display: none; padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;"></div>
+                            
+                            <button type="submit" class="btn btn-primary" style="align-self: flex-start;">
+                                Submit Bed Request
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section>
+        <div class="container text-center">
+            <h2>Need More Information?</h2>
+            <p style="font-size: 1.125rem; margin-bottom: 2rem; color: var(--dark-gray);">
+                View detailed hospital profiles, doctors, and services
+            </p>
+            <a href="hospitals.html" class="btn btn-primary">
+                Browse Hospital Directory
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About No Bed Syndrome</h4>
+                    <p>
+                        We provide real-time hospital bed availability information to improve healthcare accessibility and transparency across Ghana.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="hospitals.html">Hospitals</a></p>
+                    <p><a href="bed_status.html">Bed Status</a></p>
+                    <p><a href="services.html">Services</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 info@nobedsyndrome.gov.gh</p>
+                    <p>📞 +233 302 123 456</p>
+                    <p>📍 Accra, Ghana</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Emergency</h4>
+                    <p>For medical emergencies, please call:</p>
+                    <p style="font-size: 1.5rem; font-weight: bold; color: var(--accent-orange);">
+                        📞 193
+                    </p>
+                    <p><small>National Ambulance Service</small></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 No Bed Syndrome. All rights reserved. | Healthcare transparency for all Ghanaians.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Bed request form handler
+        document.getElementById('bed-request-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch('backend/request_bed.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showRequestMessage(result.message, 'success');
+                    this.reset();
+                } else {
+                    showRequestMessage(result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showRequestMessage('An error occurred. Please try again.', 'error');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        function showRequestMessage(message, type) {
+            const messageDiv = document.getElementById('request-message');
+            messageDiv.textContent = message;
+            messageDiv.style.display = 'block';
+            messageDiv.style.backgroundColor = type === 'success' ? '#d4edda' : '#f8d7da';
+            messageDiv.style.color = type === 'success' ? '#155724' : '#721c24';
+            messageDiv.style.border = `1px solid ${type === 'success' ? '#c3e6cb' : '#f5c6cb'}`;
+        }
+
+        // Check patient session and update navigation
+        async function checkSession() {
+            try {
+                const response = await fetch('backend/check_session.php');
+                const session = await response.json();
+                
+                const authLink = document.getElementById('auth-link');
+                if (session.logged_in) {
+                    authLink.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span>Welcome, ${session.patient_name}</span>
+                            <button onclick="logout()" style="background: none; border: none; color: var(--primary-blue); cursor: pointer; text-decoration: underline;">Logout</button>
+                        </div>
+                    `;
+                } else {
+                    authLink.innerHTML = '<a href="login.html">Login</a>';
+                }
+            } catch (error) {
+                console.error('Session check error:', error);
+            }
+        }
+
+        async function logout() {
+            try {
+                await fetch('backend/patient_logout.php');
+                location.reload();
+            } catch (error) {
+                console.error('Logout error:', error);
+                location.reload();
+            }
+        }
+
+        // Load hospitals when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSession();
+        });
+    </script>
+</body>
+</html>

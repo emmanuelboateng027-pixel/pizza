@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login or create account for No Bed Syndrome - Patient Portal">
+    <title>Patient Portal - No Bed Syndrome</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        
+        .form-group input {
+            padding: 0.75rem;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+        
+        .login-btn {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.75rem;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color var(--transition-base);
+        }
+        
+        .login-btn:hover {
+            background: var(--secondary-teal);
+        }
+        
+        .tab-btn.active {
+            border-bottom: 2px solid var(--primary-blue) !important;
+            color: var(--primary-blue) !important;
+        }
+        
+        .form-container {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <span class="icon">🏥</span>
+                <span>No Bed Syndrome</span>
+            </a>
+            
+            <ul class="navbar-menu">
+                <li id="auth-link"><a href="login.html">Login</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="hospitals.html">Hospitals</a></li>
+                <li><a href="bed_status.html">Bed Status</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                
+            </ul>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                ☰
+            </button>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <section>
+        <div class="container">
+            <div class="login-container">
+                <div style="display: flex; margin-bottom: 2rem; border-bottom: 1px solid var(--light-gray);">
+                    <button id="signin-tab" class="tab-btn active" style="flex: 1; padding: 1rem; background: none; border: none; border-bottom: 2px solid var(--primary-blue); color: var(--primary-blue); font-weight: 600; cursor: pointer;">Sign In</button>
+                    <button id="signup-tab" class="tab-btn" style="flex: 1; padding: 1rem; background: none; border: none; color: var(--dark-gray); cursor: pointer;">Sign Up</button>
+                </div>
+                
+                <!-- Sign In Form -->
+                <div id="signin-form" class="form-container">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">Patient Sign In</h2>
+                    
+                    <form id="login-form" class="login-form" action="backend/patient_login.php" method="POST">
+                        <div class="form-group">
+                            <label for="signin-email">Email Address</label>
+                            <input type="email" id="signin-email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signin-password">Password</label>
+                            <input type="password" id="signin-password" name="password" required>
+                        </div>
+                        
+                        <button type="submit" class="login-btn">Sign In</button>
+                        
+                        <div id="signin-message" class="error-message" style="display: none;"></div>
+                    </form>
+                </div>
+                
+                <!-- Sign Up Form -->
+                <div id="signup-form" class="form-container" style="display: none;">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">Create Patient Account</h2>
+                    
+                    <form id="signup-form-element" class="login-form" action="backend/patient_register.php" method="POST">
+                        <div class="form-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" name="full_name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signup-email">Email Address</label>
+                            <input type="email" id="signup-email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signup-phone">Phone Number</label>
+                            <input type="tel" id="signup-phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <input type="password" id="signup-password" name="password" required minlength="6">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signup-confirm-password">Confirm Password</label>
+                            <input type="password" id="signup-confirm-password" name="confirm_password" required minlength="6">
+                        </div>
+                        
+                        <button type="submit" class="login-btn">Create Account</button>
+                        
+                        <div id="signup-message" class="error-message" style="display: none;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About No Bed Syndrome</h4>
+                    <p>
+                        We provide real-time hospital bed availability information to improve healthcare accessibility and transparency across Ghana.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="hospitals.html">Hospitals</a></p>
+                    <p><a href="bed_status.html">Bed Status</a></p>
+                    <p><a href="services.html">Services</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 info@nobedsyndrome.gov.gh</p>
+                    <p>📞 +233 302 123 456</p>
+                    <p>📍 Accra, Ghana</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Emergency</h4>
+                    <p>For medical emergencies, please call:</p>
+                    <p style="font-size: 1.5rem; font-weight: bold; color: var(--accent-orange);">
+                        📞 193
+                    </p>
+                    <p><small>National Ambulance Service</small></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 No Bed Syndrome. All rights reserved. | Healthcare transparency for all Ghanaians.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Tab switching
+        const signinTab = document.getElementById('signin-tab');
+        const signupTab = document.getElementById('signup-tab');
+        const signinForm = document.getElementById('signin-form');
+        const signupForm = document.getElementById('signup-form');
+        
+        signinTab.addEventListener('click', () => {
+            signinTab.classList.add('active');
+            signupTab.classList.remove('active');
+            signinForm.style.display = 'block';
+            signupForm.style.display = 'none';
+        });
+        
+        signupTab.addEventListener('click', () => {
+            signupTab.classList.add('active');
+            signinTab.classList.remove('active');
+            signupForm.style.display = 'block';
+            signinForm.style.display = 'none';
+        });
+        
+        // Sign In form handler
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Signing in...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch('backend/patient_login.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage('signin-message', result.message, 'success');
+                    // Redirect to dashboard or home after successful login
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                } else {
+                    showMessage('signin-message', result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('signin-message', 'An error occurred. Please try again.', 'error');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Sign Up form handler
+        document.getElementById('signup-form-element').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                showMessage('signup-message', 'Passwords do not match.', 'error');
+                return;
+            }
+            
+            const formData = new FormData(this);
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Creating account...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch('backend/patient_register.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage('signup-message', result.message, 'success');
+                    // Automatically sign in the user after successful registration
+                    const email = document.getElementById('signup-email').value;
+                    const password = document.getElementById('signup-password').value;
+                    
+                    setTimeout(async () => {
+                        try {
+                            const signinFormData = new FormData();
+                            signinFormData.append('email', email);
+                            signinFormData.append('password', password);
+                            
+                            const signinResponse = await fetch('backend/patient_login.php', {
+                                method: 'POST',
+                                body: signinFormData
+                            });
+                            
+                            const signinResult = await signinResponse.json();
+                            
+                            if (signinResult.success) {
+                                showMessage('signup-message', 'Account created and signed in successfully!', 'success');
+                                // Redirect to home page
+                                setTimeout(() => {
+                                    window.location.href = 'index.html';
+                                }, 1500);
+                            } else {
+                                // If auto-signin fails, switch to sign in tab
+                                signinTab.click();
+                                showMessage('signin-message', 'Account created! Please sign in with your credentials.', 'success');
+                            }
+                        } catch (error) {
+                            console.error('Auto-signin error:', error);
+                            // Switch to sign in tab if auto-signin fails
+                            signinTab.click();
+                            showMessage('signin-message', 'Account created! Please sign in with your credentials.', 'success');
+                        }
+                    }, 1000);
+                } else {
+                    showMessage('signup-message', result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('signup-message', 'An error occurred. Please try again.', 'error');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        function showMessage(elementId, message, type) {
+            const messageDiv = document.getElementById(elementId);
+            messageDiv.textContent = message;
+            messageDiv.style.display = 'block';
+            messageDiv.style.color = type === 'success' ? 'green' : 'red';
+        }
+
+        // Check patient session and update navigation
+        async function checkSession() {
+            try {
+                const response = await fetch('backend/check_session.php');
+                const session = await response.json();
+                
+                const authLink = document.getElementById('auth-link');
+                if (session.logged_in) {
+                    authLink.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span>Welcome, ${session.patient_name}</span>
+                            <button onclick="logout()" style="background: none; border: none; color: var(--primary-blue); cursor: pointer; text-decoration: underline;">Logout</button>
+                        </div>
+                    `;
+                    // If already logged in, redirect to home
+                    window.location.href = 'index.html';
+                } else {
+                    authLink.innerHTML = '<a href="login.html">Login</a>';
+                }
+            } catch (error) {
+                console.error('Session check error:', error);
+            }
+        }
+
+        async function logout() {
+            try {
+                await fetch('backend/patient_logout.php');
+                location.reload();
+            } catch (error) {
+                console.error('Logout error:', error);
+                location.reload();
+            }
+        }
+
+        // Check session on page load
+        document.addEventListener('DOMContentLoaded', checkSession);
+    </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Directory of major hospitals in Ghana with contact information, services, and bed availability.">
+    <title>Hospital Directory - No Bed Syndrome</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <span class="icon">🏥</span>
+                <span>No Bed Syndrome</span>
+            </a>
+            
+            <ul class="navbar-menu">
+                <li id="auth-link"><a href="login.html">Login</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="hospitals.html" class="active">Hospitals</a></li>
+                <li><a href="bed_status.html">Bed Status</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                
+                
+            </ul>
+            
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                ☰
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section style="margin-top: 80px; background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-teal) 100%); color: var(--white); padding: 3rem 0;">
+        <div class="container">
+            <h1 style="color: var(--white);">Hospital Directory</h1>
+            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.125rem;">
+                Browse major hospitals across Ghana with comprehensive information and real-time bed availability
+            </p>
+        </div>
+    </section>
+
+    <!-- Hospitals List -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>Major Hospitals in Ghana</h2>
+                <p>Click on any hospital to view detailed information, doctors, departments, and services</p>
+            </div>
+            
+            <div class="hospital-list" id="hospitals-list">
+                <!-- Dynamic content loaded via JavaScript -->
+                <div class="loading" style="text-align: center; padding: 3rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏥</div>
+                    <p>Loading hospitals...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regional Coverage -->
+    <section style="background: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Regional Coverage</h2>
+                <p>We cover hospitals across 9 regions in Ghana</p>
+            </div>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Greater Accra</h4>
+                        <p>4 Major Hospitals</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="padding: 0.25rem 0;">• Korle Bu Teaching Hospital</li>
+                            <li style="padding: 0.25rem 0;">• Ridge Hospital</li>
+                            <li style="padding: 0.25rem 0;">• 37 Military Hospital</li>
+                            <li style="padding: 0.25rem 0;">• Tema General Hospital</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Ashanti Region</h4>
+                        <p>1 Major Hospital</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="padding: 0.25rem 0;">• Komfo Anokye Teaching Hospital</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Central Region</h4>
+                        <p>1 Major Hospital</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="padding: 0.25rem 0;">• Cape Coast Teaching Hospital</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Northern Region</h4>
+                        <p>1 Major Hospital</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="padding: 0.25rem 0;">• Tamale Teaching Hospital</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Western Region</h4>
+                        <p>1 Major Hospital</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="padding: 0.25rem 0;">• Effia Nkwanta Regional Hospital</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Bono Region</h4>
+                        <p>1 Major Hospital</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="padding: 0.25rem 0;">• Sunyani Regional Hospital</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h4>Volta Region</h4>
+                        <p>1 Major Hospital</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+                            <li style="padding: 0.25rem 0;">• Ho Teaching Hospital</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-teal) 100%); color: var(--white);">
+        <div class="container text-center">
+            <h2 style="color: var(--white);">Need to Check Bed Availability?</h2>
+            <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.125rem; margin-bottom: 2rem;">
+                View real-time bed status across all hospitals
+            </p>
+            <a href="bed_status.html" class="btn btn-primary">
+                Check Bed Status Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About No Bed Syndrome</h4>
+                    <p>
+                        We provide real-time hospital bed availability information to improve healthcare accessibility and transparency across Ghana.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="hospitals.html">Hospitals</a></p>
+                    <p><a href="bed_status.html">Bed Status</a></p>
+                    <p><a href="services.html">Services</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>📧 info@nobedsyndrome.gov.gh</p>
+                    <p>📞 +233 302 123 456</p>
+                    <p>📍 Accra, Ghana</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Emergency</h4>
+                    <p>For medical emergencies, please call:</p>
+                    <p style="font-size: 1.5rem; font-weight: bold; color: var(--accent-orange);">
+                        📞 193
+                    </p>
+                    <p><small>National Ambulance Service</small></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 No Bed Syndrome. All rights reserved. | Healthcare transparency for all Ghanaians.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Check patient session and update navigation
+        async function checkSession() {
+            try {
+                const response = await fetch('backend/check_session.php');
+                const session = await response.json();
+                
+                const authLink = document.getElementById('auth-link');
+                if (session.logged_in) {
+                    authLink.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span>Welcome, ${session.patient_name}</span>
+                            <button onclick="logout()" style="background: none; border: none; color: var(--primary-blue); cursor: pointer; text-decoration: underline;">Logout</button>
+                        </div>
+                    `;
+                } else {
+                    authLink.innerHTML = '<a href="login.html">Login</a>';
+                }
+            } catch (error) {
+                console.error('Session check error:', error);
+            }
+        }
+
+        async function logout() {
+            try {
+                await fetch('backend/patient_logout.php');
+                location.reload();
+            } catch (error) {
+                console.error('Logout error:', error);
+                location.reload();
+            }
+        }
+
+        // Check session on page load
+        document.addEventListener('DOMContentLoaded', checkSession);
+    </script>
+</body>
+</html>
