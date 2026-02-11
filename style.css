@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    margin: 0;
+    padding: 0;
+}
+
+/* Login Page Styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.login-box h1 {
+    text-align: center;
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.login-box h2 {
+    text-align: center;
+    color: #2a5298;
+    margin-bottom: 30px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: #1e3c72;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.login-box button:hover {
+    background: #2a5298;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.login-hint {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #1e3c72;
+}
+
+.form-section,
+.search-section {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+input {
+    padding: 10px;
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background: #1e3c72;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #2a5298;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #1e3c72;
+    color: white;
+}
+
+.status-available {
+    color: green;
+    font-weight: bold;
+}
+
+.status-borrowed {
+    color: red;
+    font-weight: bold;
+}
+
+.logout-btn {
+    display: block;
+    margin: 20px auto 0;
+    width: 200px;
+    padding: 12px;
+    background: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #c9302c;
+}
